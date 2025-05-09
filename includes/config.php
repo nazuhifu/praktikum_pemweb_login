@@ -1,15 +1,14 @@
 <?php
-// Konfigurasi Database
 $host = "localhost";
-$username = "";
+$user = "root";
 $password = "";
-$database = "";
+$dbname = "tugas_login";
 
-// Membuat koneksi
-$conn = mysqli_connect($host, $username, $password, $database);
+// Buat koneksi
+$conn = new mysqli($host, $user, $password, $dbname);
 
 // Cek koneksi
-if (!$conn) {
-    die("Koneksi gagal: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
 }
-?> 
+?>

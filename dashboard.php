@@ -2,11 +2,19 @@
 session_start();
 
 // Cek apakah user sudah login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit;
+}
 
+// Ambil data dari session
+$username = $_SESSION['username'];
+$role = $_SESSION['role'];
 
 // Cek role user
-
+$isAdmin = ($role === 'admin');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -64,8 +72,8 @@ session_start();
         <div class="form-container dashboard-container">
             <h2>Selamat Datang</h2>
             <div class="welcome-message">
-                <p>Halo, ?????</p>
-                <p>Role: ?????</p>
+                <p>Halo, <?php echo htmlspecialchars($username); ?></p>
+                <p>Role: <?php echo htmlspecialchars($role); ?></p>
                 <p>Anda telah berhasil login ke sistem.</p>
             </div>
 
